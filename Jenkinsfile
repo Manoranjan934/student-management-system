@@ -13,7 +13,7 @@ pipeline {
             steps {
                 echo 'STEP 2: Checking environment...'
                 bat 'git --version'
-                bat 'php -v'
+                bat '"C:\\xampp\\php\\php.exe" -v'
             }
         }
         
@@ -30,7 +30,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 echo 'STEP 4: Running PHP syntax tests...'
-                bat 'php -l "%WORKSPACE%\\main.php"'
+               bat '"C:\\xampp\\php\\php.exe" -l "%WORKSPACE%\\main.php"'
             }
         }
         
