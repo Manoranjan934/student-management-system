@@ -35,22 +35,24 @@ pipeline {
         }
         
         stage('Database Migration') {
-            steps {
-                echo 'STEP 5: Running database migrations...'
-                bat '''
-                    cd C:\\flyway-projects\\sms-migrations
-                    flyway.cmd -configFiles=conf\\flyway.conf migrate
-                '''
-            }
-        }
-        
-        stage('Verify Database') {
-            steps {
-                echo 'STEP 6: Verifying database...'
-                bat '''
-                    cd C:\\flyway-projects\\sms-migrations
-                    flyway.cmd -configFiles=conf\\flyway.conf info
-                '''
+    steps {
+        echo 'STEP 5: Running database migrations...'
+        bat '''
+            cd C:\flyway-projects\sms-migrations
+            "C:\Program Files\Red Gate\Flyway Desktop\flyway.cmd" -configFiles=conf\flyway.conf migrate
+        '''
+    }
+}
+
+stage('Verify Database') {
+    steps {
+        echo 'STEP 6: Verifying database...'
+        bat '''
+            cd C:\flyway-projects\sms-migrations
+            "C:\Program Files\Red Gate\Flyway Desktop\flyway.cmd" -configFiles=conf\flyway.conf info
+        '''
+    }
+}
             }
         }
         
