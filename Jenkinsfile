@@ -18,14 +18,14 @@ pipeline {
         }
 
         stage('Database Backup') {
-            steps {
-                echo 'STEP 3: Creating database backup...'
-                bat '''
-                    if not exist "C:/backup" mkdir "C:/backup"
-                    "C:/xampp/mysql/bin/mysqldump.exe" -u root sms > "C:/backup/sms_backup_%BUILD_NUMBER%.sql"
-                '''
-            }
-        }
+    steps {
+        echo 'STEP 3: Creating database backup...'
+        bat '''
+            if not exist "C:/backup" mkdir "C:/backup"
+            "C:/xampp/mysql/bin/mysqldump.exe" -u root sms > "C:/backup/sms_backup_%DATE:~-4,4%%DATE:~-10,2%%DATE:~-7,2%_%TIME:~0,2%%TIME:~3,2%%TIME:~6,2%.sql"
+        '''
+    }
+}
 
         stage('Run Tests') {
             steps {
